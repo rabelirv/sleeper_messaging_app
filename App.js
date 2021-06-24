@@ -25,7 +25,7 @@ export default function ChatContainer() {
     setMessages(previousMessages => GiftedChat.append(previousMessages, messages))
   }, [])
 
-  const getGif = ()=>{
+  const getGifs = ()=>{
     fetch(`http://api.giphy.com/v1/gifs/trending?api_key=Awq5410QQl0416nJogqlsinldM2s9PCA`)
     .then(res => res.json())
     .then(res =>console.log(res))
@@ -37,7 +37,7 @@ export default function ChatContainer() {
     <GiftedChat
       messages={messages}
       onSend={messages => onSend(messages)}
-      renderActions={()=><Button title="GIF" onPress={getGif}/>}
+      renderActions={()=><Button title="GIF" onPress={getGifs}/>}
       user={{
         _id: 1,
       }}
