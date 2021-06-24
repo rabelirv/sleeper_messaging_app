@@ -1,7 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useCallback, useEffect }  from 'react';
-import { StyleSheet, Text, ScrollView, TextInput } from 'react-native';
-import ChatWindow from './components/ChatWindow';
+import { StyleSheet, Text, ScrollView, TextInput, Button } from 'react-native';
 import { GiftedChat } from 'react-native-gifted-chat';
 
 export default function ChatContainer() {
@@ -26,10 +25,19 @@ export default function ChatContainer() {
     setMessages(previousMessages => GiftedChat.append(previousMessages, messages))
   }, [])
 
+  const getGif = ()=>{
+    fetch(`http://api.giphy.com/v1/gifs/trending?api_key=Awq5410QQl0416nJogqlsinldM2s9PCA`)
+    .then(res => res.json())
+    .then(res =>console.log(res))
+  }
+
+
+
   return (
     <GiftedChat
       messages={messages}
       onSend={messages => onSend(messages)}
+      renderActions={()=><Button title="GIF" onPress={getGif}/>}
       user={{
         _id: 1,
       }}
